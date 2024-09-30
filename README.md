@@ -1,0 +1,1 @@
+# Implementation-of-OCR-system-on-extracting-information-from-Vietnamese-book-cover-images
