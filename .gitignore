@@ -1,3 +1,5 @@
 resnet50_model.h5
 resnet50.keras
 kaggle.json
+SynthText/
+totaltextstr.zip
