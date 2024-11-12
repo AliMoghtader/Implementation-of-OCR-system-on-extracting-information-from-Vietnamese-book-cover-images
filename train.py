@@ -166,91 +166,92 @@ for epochs in range(50):
         x_train = []
         y_train = []
         counter = image_counter - 1
-        for image_path in jpg_files:
-            counter += 1
-            if (counter > (image_counter+1) * 500) or counter == len(jpg_files)-1 :
-                break
-            name = image_path
-            try:
-                image = cv2.imread(name)
-                image = image /255
-                tcl = cv2.imread(name[:-4]+"/tcl_map.jpg")
-                tcl[tcl > 0] = 1
-                # tco = cv2.imread(name[:-4]+"/tco_map.jpg")
+        counter += 1
+        
+        name = jpg_files[image_counter]
+        try:
+            image = cv2.imread(name)
+            image = image /255
+            tcl = cv2.imread(name[:-4]+"/tcl_map.jpg")
+            tcl[tcl > 0] = 1
+            # tco = cv2.imread(name[:-4]+"/tco_map.jpg")
 
-                # tbo1 = cv2.imread(name[:-4]+"/tbo_map1.jpg")
-                # tbo2 = cv2.imread(name[:-4]+"/tbo_map2.jpg")
-                # tbo3 = cv2.imread(name[:-4]+"/tbo_map3.jpg")
-                # tbo4 = cv2.imread(name[:-4]+"/tbo_map4.jpg")
+            # tbo1 = cv2.imread(name[:-4]+"/tbo_map1.jpg")
+            # tbo2 = cv2.imread(name[:-4]+"/tbo_map2.jpg")
+            # tbo3 = cv2.imread(name[:-4]+"/tbo_map3.jpg")
+            # tbo4 = cv2.imread(name[:-4]+"/tbo_map4.jpg")
 
-                # tvo1 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
-                # tvo2 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
-                # tvo3 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
-                # tvo4 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
+            # tvo1 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
+            # tvo2 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
+            # tvo3 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
+            # tvo4 = cv2.imread(name[:-4]+"/tvo_map4.jpg")
 
 
-                image_resized = cv2.resize(image, (512, 512), interpolation=cv2.INTER_LINEAR)
+            image_resized = cv2.resize(image, (512, 512), interpolation=cv2.INTER_LINEAR)
 
-                tcl_map_resized = cv2.resize(tcl, (128, 128), interpolation=cv2.INTER_LINEAR)
+            tcl_map_resized = cv2.resize(tcl, (128, 128), interpolation=cv2.INTER_LINEAR)
 
-                # tco_map_resized = cv2.resize(tco, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tco_map_resized = cv2.resize(tco, (128, 128), interpolation=cv2.INTER_LINEAR)
 
 
-                # tbo1_map_resized = cv2.resize(tbo1, (128, 128), interpolation=cv2.INTER_LINEAR)
-                # tbo2_map_resized = cv2.resize(tbo2, (128, 128), interpolation=cv2.INTER_LINEAR)
-                # tbo3_map_resized = cv2.resize(tbo3, (128, 128), interpolation=cv2.INTER_LINEAR)
-                # tbo4_map_resized = cv2.resize(tbo4, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tbo1_map_resized = cv2.resize(tbo1, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tbo2_map_resized = cv2.resize(tbo2, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tbo3_map_resized = cv2.resize(tbo3, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tbo4_map_resized = cv2.resize(tbo4, (128, 128), interpolation=cv2.INTER_LINEAR)
 
 
 
-                # tvo1_map_resized = cv2.resize(tvo1, (128, 128), interpolation=cv2.INTER_LINEAR)
-                # tvo2_map_resized = cv2.resize(tvo2, (128, 128), interpolation=cv2.INTER_LINEAR)
-                # tvo3_map_resized = cv2.resize(tvo3, (128, 128), interpolation=cv2.INTER_LINEAR)
-                # tvo4_map_resized = cv2.resize(tvo4, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tvo1_map_resized = cv2.resize(tvo1, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tvo2_map_resized = cv2.resize(tvo2, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tvo3_map_resized = cv2.resize(tvo3, (128, 128), interpolation=cv2.INTER_LINEAR)
+            # tvo4_map_resized = cv2.resize(tvo4, (128, 128), interpolation=cv2.INTER_LINEAR)
 
-                tcl_map_resized = tcl_map_resized[:, :, 0]
-                # tco_map_resized = tco_map_resized[:, :, 0]
+            tcl_map_resized = tcl_map_resized[:, :, 0]
+            # tco_map_resized = tco_map_resized[:, :, 0]
 
-                # tbo1_map_resized = tbo1_map_resized[:, :, 0]
-                # tbo2_map_resized = tbo2_map_resized[:, :, 0]
-                # tbo3_map_resized = tbo3_map_resized[:, :, 0]
-                # tbo4_map_resized = tbo4_map_resized[:, :, 0]
+            # tbo1_map_resized = tbo1_map_resized[:, :, 0]
+            # tbo2_map_resized = tbo2_map_resized[:, :, 0]
+            # tbo3_map_resized = tbo3_map_resized[:, :, 0]
+            # tbo4_map_resized = tbo4_map_resized[:, :, 0]
 
-                # tvo1_map_resized = tvo1_map_resized[:, :, 0]
-                # tvo2_map_resized = tvo2_map_resized[:, :, 0]
-                # tvo3_map_resized = tvo3_map_resized[:, :, 0]
-                # tvo4_map_resized = tvo4_map_resized[:, :, 0]
-                
-
-                tcl_map_resized = np.expand_dims(tcl_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tco_map_resized = np.expand_dims(tco_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tbo1_map_resized = np.expand_dims(tbo1_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tbo2_map_resized = np.expand_dims(tbo2_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tbo3_map_resized = np.expand_dims(tbo3_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tbo4_map_resized = np.expand_dims(tbo4_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tvo1_map_resized = np.expand_dims(tvo1_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tvo2_map_resized = np.expand_dims(tvo2_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tvo3_map_resized = np.expand_dims(tvo3_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                # tvo4_map_resized = np.expand_dims(tvo4_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
-                
-                # y_sample = np.concatenate([tcl_map_resized, tco_map_resized, tbo1_map_resized,tbo2_map_resized,tbo3_map_resized,tbo4_map_resized, tvo1_map_resized,tvo2_map_resized,tvo3_map_resized,tvo4_map_resized], axis=-1)  # Shape (128, 128, 10)
-
-                # print(y_sample.shape)
-                # Append y_sample to y_train list or array
-                y_train.append(tcl_map_resized)  # If using a list
-                x_train.append(image_resized)  # If using a list
-                
+            # tvo1_map_resized = tvo1_map_resized[:, :, 0]
+            # tvo2_map_resized = tvo2_map_resized[:, :, 0]
+            # tvo3_map_resized = tvo3_map_resized[:, :, 0]
+            # tvo4_map_resized = tvo4_map_resized[:, :, 0]
             
-            except:
-                # print("Image index: ",i," Not Appended")
-                continue
 
-        y_train = np.stack(y_train)
-        x_train = np.stack(x_train)
+            tcl_map_resized = np.expand_dims(tcl_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tco_map_resized = np.expand_dims(tco_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tbo1_map_resized = np.expand_dims(tbo1_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tbo2_map_resized = np.expand_dims(tbo2_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tbo3_map_resized = np.expand_dims(tbo3_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tbo4_map_resized = np.expand_dims(tbo4_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tvo1_map_resized = np.expand_dims(tvo1_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tvo2_map_resized = np.expand_dims(tvo2_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tvo3_map_resized = np.expand_dims(tvo3_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            # tvo4_map_resized = np.expand_dims(tvo4_map_resized, axis=-1)  # Shape becomes (1, 128, 128)
+            
+            # y_sample = np.concatenate([tcl_map_resized, tco_map_resized, tbo1_map_resized,tbo2_map_resized,tbo3_map_resized,tbo4_map_resized, tvo1_map_resized,tvo2_map_resized,tvo3_map_resized,tvo4_map_resized], axis=-1)  # Shape (128, 128, 10)
 
-        model.fit(
-        x=x_train,  # or a generator
-        y=y_train,
-        epochs=1,
-        batch_size=16,
-        )
+            # print(y_sample.shape)
+            # Append y_sample to y_train list or array
+            y_train.append(tcl_map_resized)  # If using a list
+            x_train.append(image_resized)  # If using a list
+            
+        
+        except:
+            # print("Image index: ",i," Not Appended")
+            continue
+
+        if image_counter % 200 == 0 :
+            y_train = np.stack(y_train)
+            x_train = np.stack(x_train)
+
+            model.fit(
+            x=x_train,  # or a generator
+            y=y_train,
+            epochs=1,
+            batch_size=16,
+            )
+
+print("finished")
